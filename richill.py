@@ -1,20 +1,28 @@
-import streamlit as st
+def szamologep():
+    print("Egyszerű Számológép")
+    print("Válassz műveletet:")
+    print("1. Összeadás")
+    print("2. Kivonás")
+    print("3. Szorzás")
+    print("4. Osztás")
+    
+    valasz = input("Választott művelet (1/2/3/4): ")
 
-def szamologep(a, b):
-    osszeg = a + b
-    kulonbseg = a - b
-    szorzat = a * b
-    osztas = a / b if b != 0 else "Nem osztható 0-val"
-    return osszeg, kulonbseg, szorzat, osztas
+    szam1 = float(input("Kérem az első számot: "))
+    szam2 = float(input("Kérem a második számot: "))
 
-st.title('Egyszerű Számológép')
+    if valasz == '1':
+        print(f"Az összeg: {szam1 + szam2}")
+    elif valasz == '2':
+        print(f"A különbség: {szam1 - szam2}")
+    elif valasz == '3':
+        print(f"A szorzat: {szam1 * szam2}")
+    elif valasz == '4':
+        if szam2 != 0:
+            print(f"A hányados: {szam1 / szam2}")
+        else:
+            print("Nem osztható 0-val")
+    else:
+        print("Érvénytelen választás")
 
-szam1 = st.number_input("Kérem az első számot:")
-szam2 = st.number_input("Kérem a második számot:")
-
-if st.button('Számol'):
-    eredmeny = szamologep(szam1, szam2)
-    st.write(f'Összeg: {eredmeny[0]}')
-    st.write(f'Különbség: {eredmeny[1]}')
-    st.write(f'Szorzat: {eredmeny[2]}')
-    st.write(f'Osztás: {eredmeny[3]}')
+szamologep()
