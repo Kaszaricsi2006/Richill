@@ -2,7 +2,7 @@ import streamlit as st
 import sqlite3
 
 # Adatbázis kapcsolat létrehozása
-conn = sqlite3.connect('example.db')
+conn = sqlite3.connect('example.db', detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES)
 c = conn.cursor()
 
 # Tábla létrehozása, ha még nem létezik
@@ -18,7 +18,7 @@ def main():
 
     if choice == 'Create':
         st.subheader('Hozzáadás új felhasználóhoz')
-        name = st.text_input('Név', value='', max_chars=50, key='name_input', type='default', help='Írd be a nevet', encoding='utf-8')
+        name = st.text_input('Név', value='', max_chars=50, help='Írd be a nevet', key='name_input')
         age = st.number_input('Kor', 0)
         if st.button('Felhasználó hozzáadása'):
             c.execute('INSERT INTO users (name, age) VALUES (?, ?)', (name, age))
@@ -36,7 +36,7 @@ def main():
         users = c.execute('SELECT * FROM users')
         user_list = [row[1] for row in users]
         selected_user = st.selectbox('Válassz felhasználót', user_list)
-        new_name = st.text_input('Új név', '')
+        new_name = st.text_input('Új név', value='', max_chars=50, help='Írd be az új nevet', key='new_name_input')
         new_age = st.number_input('Új kor', 0)
         if st.button('Felhasználó frissítése'):
             c.execute('UPDATE users SET name=?, age=? WHERE name=?', (new_name, new_age, selected_user))
