@@ -1,3 +1,4 @@
+'''
 # import module
 import streamlit as st
  
@@ -182,7 +183,9 @@ if(st.button('Calculate BMI')):
 		st.warning("Overweight")
 	elif(bmi >= 30):
 		st.error("Extremely Overweight")
-
-
+'''
+a = input("Kérek egy számot:")
+b = input("Kérek egy számot:")
+print(a + b)
 
 
