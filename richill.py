@@ -1,6 +1,6 @@
 import streamlit as st
 import sqlite3
-name = st.text_input('Név', value='', max_chars=50, key='name_input', type='default', help='Írd be a nevet', encoding='utf-8')
+
 # Adatbázis kapcsolat létrehozása
 conn = sqlite3.connect('example.db')
 c = conn.cursor()
@@ -18,7 +18,7 @@ def main():
 
     if choice == 'Create':
         st.subheader('Hozzáadás új felhasználóhoz')
-        name = st.text_input('Név', '')
+        name = st.text_input('Név', value='', max_chars=50, key='name_input', type='default', help='Írd be a nevet', encoding='utf-8')
         age = st.number_input('Kor', 0)
         if st.button('Felhasználó hozzáadása'):
             c.execute('INSERT INTO users (name, age) VALUES (?, ?)', (name, age))
